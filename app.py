@@ -535,11 +535,7 @@ else:
 # 6. CHECAGEM VISUAL (PPC) - ESTILO STREAMLIT
 # -------------------------------------------------------------
 st.write("## 👁️ Checagem Visual do Modelo (PPC)")
-st.markdown("""
-Comparamos a distribuição das **notas reais** (linha vermelha) com o que o modelo **imagina** 
-que as notas deveriam ser (linhas azuis). Se as linhas azuis cobrirem bem a linha preta, 
-o modelo entendeu bem os dados.
-""")
+
 
 # Recupera dados
 if "idatas" not in st.session_state or "df_full" not in st.session_state:
@@ -624,7 +620,7 @@ for idx, col_name in enumerate(cols_notas):
         fig.add_trace(go.Scatter(
             x=[None], y=[None],
             mode='lines',
-            name='Simulação do Modelo',
+            name='Dados Observados (Reais)',
             line=dict(color='rgb(0, 122, 204)', width=2)
         ))
 
@@ -632,7 +628,7 @@ for idx, col_name in enumerate(cols_notas):
         fig.add_trace(go.Scatter(
             x=x_real_plot, y=y_real_plot,
             mode='lines',
-            name='Dados Observados (Reais)',
+            name='Simulação do Modelo',
             line=dict(color='red', width=2.5)
         ))
 
@@ -651,4 +647,5 @@ for idx, col_name in enumerate(cols_notas):
             )
         )
         
+
         st.plotly_chart(fig, use_container_width=True)
